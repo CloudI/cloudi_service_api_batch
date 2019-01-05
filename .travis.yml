@@ -5,7 +5,7 @@ otp_release:
   - 19.3
 before_script:
   - rebar get-deps
-script: rebar compile
+script: rebar compile ct suites=cloudi_service_api_batch || ( cat logs/raw.log logs/ct_run*/cloudi.log && exit 1 )
 after_script:
   - rebar clean
 branches:
