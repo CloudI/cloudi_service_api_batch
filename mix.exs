@@ -6,7 +6,7 @@ defmodule CloudIServiceApiBatch do
 
   def project do
     [app: :cloudi_service_api_batch,
-     version: "2.0.2",
+     version: "2.0.3",
      language: :erlang,
      erlc_options: [
        :debug_info,
@@ -29,8 +29,10 @@ defmodule CloudIServiceApiBatch do
   end
 
   defp deps do
-    [{:cloudi_core, "~> 2.0.2"},
-     {:trie, "~> 2.0.2"}]
+    [{:cloudi_core, "~> 2.0.3", app: false},
+     {:cloudi_service_api_requests, "~> 2.0.3", app: false},
+     {:trie, "~> 2.0.3", app: false},
+     {:jsx, "~> 3.1.0", app: false}]
   end
 
   defp description do

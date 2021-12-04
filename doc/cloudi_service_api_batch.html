@@ -15,7 +15,7 @@
    A service that provides batch execution of CloudI services.
 <p>Copyright © 2019-2021 Michael Truog</p>
 
-<p><b>Version:</b> 2.0.2 May 26 2021 20:15:11
+<p><b>Version:</b> 2.0.3 Dec 3 2021 18:52:58
   ------------------------------------------------------------------------</p>
 <p><b>Behaviours:</b> <a href="deps/cloudi_core/doc/cloudi_service.html"><tt>cloudi_service</tt></a>.</p>
 <p><b>Authors:</b> Michael Truog (<a href="mailto:mjtruog at protonmail dot com"><tt>mjtruog at protonmail dot com</tt></a>).</p>
@@ -124,13 +124,13 @@
 
 <h3 class="function"><a name="services_restart-3">services_restart/3</a></h3>
 <div class="spec">
-<p><tt>services_restart(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string()) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
+<p><tt>services_restart(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string()) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found | not_running})</tt><br></p>
 <p> </p>
 </div>
 
 <h3 class="function"><a name="services_restart-4">services_restart/4</a></h3>
 <div class="spec">
-<p><tt>services_restart(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_milliseconds">timeout_milliseconds()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
+<p><tt>services_restart(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_milliseconds">timeout_milliseconds()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found | not_running})</tt><br></p>
 <p> </p>
 </div>
 <hr>
