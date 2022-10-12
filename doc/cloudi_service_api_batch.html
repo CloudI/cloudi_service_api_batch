@@ -13,9 +13,9 @@
 <ul class="index"><li><a href="#description">Description</a></li><li><a href="#types">Data Types</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>
    <h3><a name="CloudI_Service_API_Batch">CloudI Service API Batch</a></h3>
    A service that provides batch execution of CloudI services.
-<p>Copyright © 2019-2021 Michael Truog</p>
+<p>Copyright © 2019-2022 Michael Truog</p>
 
-<p><b>Version:</b> 2.0.3 Dec 3 2021 18:52:58
+<p><b>Version:</b> 2.0.5 Oct 11 2022 20:57:03
   ------------------------------------------------------------------------</p>
 <p><b>Behaviours:</b> <a href="deps/cloudi_core/doc/cloudi_service.html"><tt>cloudi_service</tt></a>.</p>
 <p><b>Authors:</b> Michael Truog (<a href="mailto:mjtruog at protonmail dot com"><tt>mjtruog at protonmail dot com</tt></a>).</p>
@@ -41,8 +41,8 @@
 <p><tt>service_name() = <a href="deps/cloudi_core/doc/cloudi.html#type-service_name">cloudi:service_name()</a></tt></p>
 
 
-<h3 class="typedecl"><a name="type-timeout_milliseconds">timeout_milliseconds()</a></h3>
-<p><tt>timeout_milliseconds() = <a href="deps/cloudi_core/doc/cloudi.html#type-timeout_milliseconds">cloudi:timeout_milliseconds()</a></tt></p>
+<h3 class="typedecl"><a name="type-timeout_period">timeout_period()</a></h3>
+<p><tt>timeout_period() = <a href="deps/cloudi_core/doc/cloudi.html#type-timeout_period">cloudi:timeout_period()</a></tt></p>
 
 
 <h2><a name="index">Function Index</a></h2>
@@ -70,7 +70,7 @@
 
 <h3 class="function"><a name="cloudi_service_handle_request-11">cloudi_service_handle_request/11</a></h3>
 <div class="spec">
-<p><tt>cloudi_service_handle_request(RequestType, Name, Pattern, RequestInfo, Request, Timeout, Priority, TransId, Pid, State, Dispatcher) -&gt; any()</tt></p>
+<p><tt>cloudi_service_handle_request(RequestType, Name, Pattern, RequestInfo, Request, Timeout, Priority, TransId, Source, State, Dispatcher) -&gt; any()</tt></p>
 <p> </p>
 </div>
 
@@ -94,7 +94,7 @@
 
 <h3 class="function"><a name="queue_clear-4">queue_clear/4</a></h3>
 <div class="spec">
-<p><tt>queue_clear(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_milliseconds">timeout_milliseconds()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
+<p><tt>queue_clear(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_period">timeout_period()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
 <p> </p>
 </div>
 
@@ -106,7 +106,7 @@
 
 <h3 class="function"><a name="services_add-5">services_add/5</a></h3>
 <div class="spec">
-<p><tt>services_add(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Configs::<a href="#type-service_configurations">service_configurations()</a>, Timeout::<a href="#type-timeout_milliseconds">timeout_milliseconds()</a>) -&gt; <a href="#type-module_response">module_response</a>(CountQueued::non_neg_integer() | {error, purged})</tt><br></p>
+<p><tt>services_add(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Configs::<a href="#type-service_configurations">service_configurations()</a>, Timeout::<a href="#type-timeout_period">timeout_period()</a>) -&gt; <a href="#type-module_response">module_response</a>(CountQueued::non_neg_integer() | {error, purged})</tt><br></p>
 <p> </p>
 </div>
 
@@ -118,7 +118,7 @@
 
 <h3 class="function"><a name="services_remove-4">services_remove/4</a></h3>
 <div class="spec">
-<p><tt>services_remove(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_milliseconds">timeout_milliseconds()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
+<p><tt>services_remove(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_period">timeout_period()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
 <p> </p>
 </div>
 
@@ -130,7 +130,7 @@
 
 <h3 class="function"><a name="services_restart-4">services_restart/4</a></h3>
 <div class="spec">
-<p><tt>services_restart(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_milliseconds">timeout_milliseconds()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found | not_running})</tt><br></p>
+<p><tt>services_restart(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_period">timeout_period()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found | not_running})</tt><br></p>
 <p> </p>
 </div>
 <hr>
