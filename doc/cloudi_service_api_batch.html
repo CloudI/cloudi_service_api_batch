@@ -13,9 +13,9 @@
 <ul class="index"><li><a href="#description">Description</a></li><li><a href="#types">Data Types</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>
    <h3><a name="CloudI_Service_API_Batch">CloudI Service API Batch</a></h3>
    A service that provides batch execution of CloudI services.
-<p>Copyright © 2019-2022 Michael Truog</p>
+<p>Copyright © 2019-2023 Michael Truog</p>
 
-<p><b>Version:</b> 2.0.5 Oct 11 2022 20:57:03
+<p><b>Version:</b> 2.0.7 Oct 26 2023 13:27:38
   ------------------------------------------------------------------------</p>
 <p><b>Behaviours:</b> <a href="deps/cloudi_core/doc/cloudi_service.html"><tt>cloudi_service</tt></a>.</p>
 <p><b>Authors:</b> Michael Truog (<a href="mailto:mjtruog at protonmail dot com"><tt>mjtruog at protonmail dot com</tt></a>).</p>
@@ -33,8 +33,12 @@
 <p><tt>module_response(Result) = {{ok, Result}, NewAgent::<a href="#type-agent">agent()</a>} | {{error, <a href="deps/cloudi_core/doc/cloudi.html#type-error_reason">cloudi:error_reason()</a>}, NewAgent::<a href="#type-agent">agent()</a>}</tt></p>
 
 
+<h3 class="typedecl"><a name="type-service_configuration">service_configuration()</a></h3>
+<p><tt>service_configuration() = <a href="deps/cloudi_core/doc/cloudi_service_api.html#type-service_internal">cloudi_service_api:service_internal()</a> | <a href="deps/cloudi_core/doc/cloudi_service_api.html#type-service_external">cloudi_service_api:service_external()</a> | <a href="deps/cloudi_core/doc/cloudi_service_api.html#type-service_proplist">cloudi_service_api:service_proplist()</a></tt></p>
+
+
 <h3 class="typedecl"><a name="type-service_configurations">service_configurations()</a></h3>
-<p><tt>service_configurations() = [<a href="deps/cloudi_core/doc/cloudi_service_api.html#type-service_internal">cloudi_service_api:service_internal()</a> | <a href="deps/cloudi_core/doc/cloudi_service_api.html#type-service_external">cloudi_service_api:service_external()</a> | <a href="deps/cloudi_core/doc/cloudi_service_api.html#type-service_proplist">cloudi_service_api:service_proplist()</a>, ...]</tt></p>
+<p><tt>service_configurations() = [<a href="#type-service_configuration">service_configuration()</a>, ...]</tt></p>
 
 
 <h3 class="typedecl"><a name="type-service_name">service_name()</a></h3>
@@ -50,8 +54,14 @@
 <tr><td valign="top"><a href="#cloudi_service_handle_request-11">cloudi_service_handle_request/11</a></td><td></td></tr>
 <tr><td valign="top"><a href="#cloudi_service_init-4">cloudi_service_init/4</a></td><td></td></tr>
 <tr><td valign="top"><a href="#cloudi_service_terminate-3">cloudi_service_terminate/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#queue-3">queue/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#queue-4">queue/4</a></td><td></td></tr>
 <tr><td valign="top"><a href="#queue_clear-3">queue_clear/3</a></td><td></td></tr>
 <tr><td valign="top"><a href="#queue_clear-4">queue_clear/4</a></td><td></td></tr>
+<tr><td valign="top"><a href="#queue_resume-3">queue_resume/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#queue_resume-4">queue_resume/4</a></td><td></td></tr>
+<tr><td valign="top"><a href="#queue_suspend-3">queue_suspend/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#queue_suspend-4">queue_suspend/4</a></td><td></td></tr>
 <tr><td valign="top"><a href="#services_add-4">services_add/4</a></td><td></td></tr>
 <tr><td valign="top"><a href="#services_add-5">services_add/5</a></td><td></td></tr>
 <tr><td valign="top"><a href="#services_remove-3">services_remove/3</a></td><td></td></tr>
@@ -86,6 +96,18 @@
 <p> </p>
 </div>
 
+<h3 class="function"><a name="queue-3">queue/3</a></h3>
+<div class="spec">
+<p><tt>queue(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string()) -&gt; <a href="#type-module_response">module_response</a>({ok, [<a href="#type-service_configuration">service_configuration()</a>]} | {error, not_found})</tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="queue-4">queue/4</a></h3>
+<div class="spec">
+<p><tt>queue(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_period">timeout_period()</a>) -&gt; <a href="#type-module_response">module_response</a>({ok, [<a href="#type-service_configuration">service_configuration()</a>]} | {error, not_found})</tt><br></p>
+<p> </p>
+</div>
+
 <h3 class="function"><a name="queue_clear-3">queue_clear/3</a></h3>
 <div class="spec">
 <p><tt>queue_clear(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string()) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
@@ -95,6 +117,30 @@
 <h3 class="function"><a name="queue_clear-4">queue_clear/4</a></h3>
 <div class="spec">
 <p><tt>queue_clear(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_period">timeout_period()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="queue_resume-3">queue_resume/3</a></h3>
+<div class="spec">
+<p><tt>queue_resume(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string()) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="queue_resume-4">queue_resume/4</a></h3>
+<div class="spec">
+<p><tt>queue_resume(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_period">timeout_period()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="queue_suspend-3">queue_suspend/3</a></h3>
+<div class="spec">
+<p><tt>queue_suspend(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string()) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="queue_suspend-4">queue_suspend/4</a></h3>
+<div class="spec">
+<p><tt>queue_suspend(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, QueueName::nonempty_string(), Timeout::<a href="#type-timeout_period">timeout_period()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, not_found})</tt><br></p>
 <p> </p>
 </div>
 
